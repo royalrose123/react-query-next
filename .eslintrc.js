@@ -13,7 +13,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['standard', 'standard-react', 'plugin:prettier/recommended', 'plugin:react/recommended'],
+  extends: ['next', 'next/core-web-vitals', 'standard', 'standard-react', 'plugin:prettier/recommended', 'plugin:react/recommended'],
   plugins: ['react-hooks'],
   rules: {
     // allow debugger during development
