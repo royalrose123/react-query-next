@@ -25,6 +25,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/self-closing-comp': 'error',
     'react/display-name': 'off',
+    // next does not need
+    'react/react-in-jsx-scope': 'off',
     camelcase: 'off',
     'prettier/prettier': [
       'error',
