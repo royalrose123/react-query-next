@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import classnames from 'classnames/bind'
 
+// Styles
 import styles from './style.module.scss'
 
 // Variables

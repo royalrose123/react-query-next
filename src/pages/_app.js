@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types'
 
+// Components
 import BasicLayout from '@/layouts/BasicLayout'
+
+// Styles
+import '@/styles/main.scss'
 
 // PropTypes
 const propTypes = {
