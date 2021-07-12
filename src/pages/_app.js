@@ -13,10 +13,12 @@ const propTypes = {
 }
 
 function MyApp({ Component, pageProps }) {
+  const Layout = Component.Layout ? Component.Layout : BasicLayout
+
   return (
-    <BasicLayout>
+    <Layout>
       <Component {...pageProps} />
-    </BasicLayout>
+    </Layout>
   )
 }
 

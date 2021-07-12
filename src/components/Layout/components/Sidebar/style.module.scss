@@ -1,0 +1,8 @@
+.sidebar {
+  width: $side-width;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $blue-darker;
+  box-shadow: 2px 0 6px rgb(0 21 41 / 35%);
+}

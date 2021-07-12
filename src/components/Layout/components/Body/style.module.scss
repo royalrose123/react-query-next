@@ -1,0 +1,4 @@
+.body {
+  width: calc(100% - #{$side-width});
+  height: 100%;
+}

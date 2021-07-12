@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types'
-import classnames from 'classnames/bind'
 
-// Styles
-import styles from './style.module.scss'
-
-// Variables
-const cx = classnames.bind(styles)
+// Components
+import Layout from '@/components/Layout'
 
 // PropTypes
 const propTypes = {
@@ -16,15 +12,13 @@ function BasicLayout(props) {
   const { children } = props
 
   return (
-    <div className={cx('layout')}>
-      <div className={cx('side')}>
-        <div>navigation</div>
-      </div>
-      <div className={cx('body')}>
-        <div className={cx('header')}>header</div>
-        <div className={cx('main')}>{children}</div>
-      </div>
-    </div>
+    <Layout>
+      <Layout.Sidebar />
+      <Layout.Body>
+        <Layout.Header />
+        <Layout.Main>{children}</Layout.Main>
+      </Layout.Body>
+    </Layout>
   )
 }
 
