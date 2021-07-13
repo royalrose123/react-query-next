@@ -9,7 +9,7 @@ const cx = classnames.bind(styles)
 
 // PropTypes
 const propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.array,
 }
 
 function Body(props) {
