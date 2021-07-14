@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
 
 // Components
@@ -12,13 +12,17 @@ import styles from './style.module.scss'
 const cx = classnames.bind(styles)
 
 // PropTypes
-const propTypes = {}
+const propTypes = {
+  navigations: PropTypes.array,
+}
 
 function Sidebar(props) {
+  const { navigations } = props
+
   return (
     <div className={cx('sidebar')}>
       <Logo />
-      <Navigation />
+      <Navigation navigations={navigations} />
     </div>
   )
 }
