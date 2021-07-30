@@ -3,7 +3,7 @@ import classnames from 'classnames/bind'
 
 // Components
 import Logo from './components/Logo'
-import Navigation from './components/Navigation'
+import Navigation from '@/components/Navigation'
 
 // Styles
 import styles from './style.module.scss'

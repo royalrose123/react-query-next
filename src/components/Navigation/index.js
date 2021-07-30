@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
 
@@ -18,6 +20,12 @@ const propTypes = {
 function Navigation(props) {
   const { navigations } = props
 
+  const router = useRouter()
+  const { pathname } = router
+  const pathGroup = pathname.split('/')[1] // ex: /lab/spider => ['/', 'lab', 'spider'] // 取第一個 path
+
+  const [selectGroup, setSelectGroup] = useState(pathGroup)
+
   const computedParentPath = (nest, path) => {
     return nest.map((item) => {
       return {
@@ -28,32 +36,25 @@ function Navigation(props) {
     })
   }
 
-  const renderMenuItem = (item) => {
-    return <Menu.Group.Item {...item} />
-  }
-
-  const renderMenu = (navigations) => {
-    return navigations.map((item, index) => {
+  const renderMenu = ({ navigations, isSub = false }) => {
+    return navigations.map((item) => {
       const { name, nest, hasSub, icon, path } = item
 
       const newNest = computedParentPath(nest, path)
 
-      return (
-        <div key={index}>
-          {hasSub ? (
-            <Menu.Group title={name} icon={icon} {...item}>
-              {renderMenu(newNest)}
-            </Menu.Group>
-          ) : (
-            renderMenuItem(item, path)
-          )}
-        </div>
+      return hasSub ? (
+        <Menu.Group key={item.id} title={name} icon={icon} isSub={isSub} selectGroup={selectGroup} setSelectGroup={setSelectGroup} {...item}>
+          {renderMenu({ navigations: newNest, isSub: true })}
+        </Menu.Group>
+      ) : (
+        <Menu.Group.Item key={item.id} path={path} {...item} />
       )
     })
   }
+
   return (
     <div className={cx('navigation')}>
-      <Menu>{renderMenu(navigations)}</Menu>
+      <Menu>{renderMenu({ navigations })}</Menu>
     </div>
   )
 }

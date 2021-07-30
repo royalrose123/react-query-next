@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 // Components
 import BasicLayout from '@/layouts/BasicLayout'
+
+// Constants
+import navigations from '@/constants/navigations'
 
 // Styles
 import '@/styles/main.scss'
@@ -12,13 +16,25 @@ const propTypes = {
   pageProps: PropTypes.object,
 }
 
+const clientConfigs = {
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+}
+
+const queryClient = new QueryClient(clientConfigs)
+
 function MyApp({ Component, pageProps }) {
   const Layout = Component.Layout ? Component.Layout : BasicLayout
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout navigations={navigations}>
+        <Component {...pageProps} />
+      </Layout>
+    </QueryClientProvider>
   )
 }
 

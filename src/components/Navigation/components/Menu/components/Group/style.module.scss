@@ -1,0 +1,100 @@
+.group {
+  color: $white;
+  height: 100%;
+
+  &-item {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 24px 0px 24px;
+    color: $grey-light;
+    cursor: pointer;
+
+    &:hover {
+      color: $white;
+    }
+
+    &:hover ::before,
+    &:hover ::after {
+      background: $white;
+    }
+
+    &[data-is-active='true'] {
+      color: $white;
+    }
+
+    &-wrapper {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    &-title {
+      flex: 1;
+    }
+
+    &-arrow {
+      &::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 1.5px;
+        background: $grey-light;
+        transform: rotate(-45deg) translateX(2px);
+      }
+
+      &[data-is-active='true'] {
+        &::before {
+          background: $white;
+        }
+      }
+      &[data-is-open='true'] {
+        &::before {
+          transform: rotate(45deg) translateX(2px);
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 1.5px;
+        background: $grey-light;
+        border-radius: 2px;
+        transform: rotate(45deg) translateX(-2px);
+      }
+
+      &[data-is-active='true'] {
+        &::after {
+          background: $white;
+        }
+      }
+
+      &[data-is-open='true'] {
+        &::after {
+          transform: rotate(-45deg) translateX(-2px);
+        }
+      }
+    }
+  }
+
+  &-children {
+    background-color: $blue-darkest;
+    transition: max-height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform-origin: top center;
+
+    &[data-is-open='true'] {
+      max-height: 200px; // TODO: children 不固定，高度也會不固定
+    }
+
+    &[data-is-open='false'] {
+      visibility: hidden;
+      max-height: 0;
+    }
+  }
+}
